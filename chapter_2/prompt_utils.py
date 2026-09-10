@@ -1,5 +1,6 @@
-from openai import OpenAI
 from dotenv import load_dotenv
+from openai import OpenAI
+
 
 
 load_dotenv()  # loading and setting the api key can be done in one step

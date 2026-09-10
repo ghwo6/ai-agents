@@ -170,3 +170,5 @@ OAI_CONFIG_LIST
 
 tmp*
 
+.vscode/
+./aiAgent/
