@@ -172,3 +172,6 @@ tmp*
 
 .vscode/
 ./aiAgent/
+aiAgent/
+.vscode/
+.env
