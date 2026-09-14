@@ -51,6 +51,14 @@ def load_and_parse_json_file(file_path):
 
 def main():
     origin_directory = os.path.dirname(__file__)
+    
+    # output폴더를 만들기로 함
+    output_txt_folderName = "output"
+    output_txt_folder_path = os.path.join(origin_directory,output_txt_folderName)
+    if not os.path.exists(output_txt_folder_path):
+        os.mkdir(output_txt_folder_path)
+    
+
     directory = "prompts"  # You can change this to the directory containing your text files
     text_files = list_text_files_in_directory(os.path.join(origin_directory,directory))
 
@@ -74,17 +82,25 @@ def main():
                 file_path = os.path.join(origin_directory,directory,selected_file)
                 prompts = load_and_parse_json_file(file_path)
                 print(f"Running prompts for {selected_file}")
-                for i,prompt in enumerate(prompts):
-                    print(f"PROMPT {i+1} ---------------")
-                    print(prompt)
-                    print(f"REPLY ------------------------------")
-                    # usingOpenAI
-                    # print(prompt_utils.prompt_llm(prompt))
-                    # 이부분 수정 base_url 등 등
-                    print(prompt_utils.prompt_llm_modified(prompt))
-                    # using Local LLM
-                    # print(prompt_utils.prompt_llm(prompt,model="local-model",base_url="http://localhost:1234/v1",api_key="not_used"))
-            
+                
+                output_txt_fileName = os.path.basename(file_path) + ".txt"
+                output_txt_file = os.path.join(origin_directory,directory,output_txt_fileName)
+                
+                with open(output_txt_file,"at",encoding="utf-8") as f:
+
+                    for i,prompt in enumerate(prompts):
+                        print(f"PROMPT {i+1} ---------------")
+                        print(prompt)
+                        print(f"REPLY ------------------------------")
+                        # usingOpenAI
+                        # print(prompt_utils.prompt_llm(prompt))
+                        # 이부분 수정 base_url 등 등
+                        result = prompt_utils.prompt_llm_modified(prompt)
+                        print(reslut)
+                        f.writelines(result)
+                        # using Local LLM
+                        # print(prompt_utils.prompt_llm(prompt,model="local-model",base_url="http://localhost:1234/v1",api_key="not_used"))
+                
             else:
                 print("Invalid choice. Please enter a valid number.")
         except KeyboardInterrupt:
