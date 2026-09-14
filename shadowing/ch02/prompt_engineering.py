@@ -89,6 +89,12 @@ def main():
                 with open(output_txt_file,"at",encoding="utf-8") as f:
 
                     for i,prompt in enumerate(prompts):
+                        
+                        # 한국말로 대답해주는 기능 추가함 with Gemini
+                        for msg in prompt:
+                            if msg.get("role") == "system":
+                                msg["content"] += " always relpy in Korean. User is Korean."
+
                         print(f"PROMPT {i+1} ---------------")
                         print(prompt)
                         print(f"REPLY ------------------------------")

@@ -35,7 +35,7 @@ def prompt_llm(messages,model = "gpt-5-mini",base_url=None,api_key=""):
 
     response = client.chat.completions.create(
         model=model,
-        messages=messages + "please replies to korean, User is korean.",
+        messages=messages,
         temperature=0.7,
         )
     
