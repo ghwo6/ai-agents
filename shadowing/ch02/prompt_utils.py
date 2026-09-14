@@ -28,15 +28,15 @@ else:
 def prompt_llm(messages,model = "gpt-5-mini",base_url=None,api_key=""):
     if base_url:
         #Azure or local LLM deployment
-        client = openAI(base_url=base_url)
+        client = OpenAI(base_url=base_url)
     else:
         #OpenAI deployment, api key set in environment variable
-        client = openAI()
+        client = OpenAI()
 
     response = client.chat.completions.create(
         model=model,
         messages=messages,
-        temprature=0.7,
+        temperature=0.7,
         )
     
     return response.chices[0].message.content
