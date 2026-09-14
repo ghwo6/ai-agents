@@ -46,7 +46,7 @@ def load_and_parse_json_file(file_path):
                 except json.JSONDecodeError as e:
                     print(f"Error decoding JSON: {json_text}")
                     print(e)
-                josn_text = ""
+                json_text = ""
     return data
 
 def main():
@@ -96,8 +96,8 @@ def main():
                         # print(prompt_utils.prompt_llm(prompt))
                         # 이부분 수정 base_url 등 등
                         result = prompt_utils.prompt_llm_modified(prompt)
-                        print(reslut)
-                        f.writelines(result)
+                        print(result)
+                        f.writelines(result+"\n")
                         # using Local LLM
                         # print(prompt_utils.prompt_llm(prompt,model="local-model",base_url="http://localhost:1234/v1",api_key="not_used"))
                 

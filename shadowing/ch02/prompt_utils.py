@@ -39,7 +39,7 @@ def prompt_llm(messages,model = "gpt-5-mini",base_url=None,api_key=""):
         temperature=0.7,
         )
     
-    return response.chices[0].message.content
+    return response.choices[0].message.content
 
-def prompt_llm_modified(message,model = "gpt-5-mini",base_url="",api_key=""):
-    prompt_llm(messages=message,model=model,base_url=Base_url,api_key=OPENAI_API_KEY)
+def prompt_llm_modified(message,model = "gpt-5-mini",base_url=Base_url,api_key=OPENAI_API_KEY):
+    return prompt_llm(messages=message,model=model,base_url=base_url,api_key=api_key)
