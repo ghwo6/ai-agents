@@ -84,7 +84,7 @@ def main():
                 print(f"Running prompts for {selected_file}")
                 
                 output_txt_fileName = os.path.basename(file_path) + ".txt"
-                output_txt_file = os.path.join(origin_directory,directory,output_txt_fileName)
+                output_txt_file = os.path.join(output_txt_folder_path,output_txt_fileName)
                 
                 with open(output_txt_file,"at",encoding="utf-8") as f:
 
@@ -95,9 +95,12 @@ def main():
                         # usingOpenAI
                         # print(prompt_utils.prompt_llm(prompt))
                         # 이부분 수정 base_url 등 등
+                        # 아래 내용을 수정함
+                        # print(prompt_utils.prompt_llm_modified(prompt))
                         result = prompt_utils.prompt_llm_modified(prompt)
                         print(result)
-                        f.writelines(result+"\n")
+                        # f.writelines(result+"\n")
+                        f.write(result+"\n")
                         # using Local LLM
                         # print(prompt_utils.prompt_llm(prompt,model="local-model",base_url="http://localhost:1234/v1",api_key="not_used"))
                 

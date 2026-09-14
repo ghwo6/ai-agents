@@ -35,11 +35,11 @@ def prompt_llm(messages,model = "gpt-5-mini",base_url=None,api_key=""):
 
     response = client.chat.completions.create(
         model=model,
-        messages=messages,
+        messages=messages + "please replies to korean, User is korean.",
         temperature=0.7,
         )
     
     return response.choices[0].message.content
 
-def prompt_llm_modified(message,model = "gpt-5-mini",base_url=Base_url,api_key=OPENAI_API_KEY):
+def prompt_llm_modified(message,model = "gpt-5.4-mini",base_url=Base_url,api_key=OPENAI_API_KEY):
     return prompt_llm(messages=message,model=model,base_url=base_url,api_key=api_key)
